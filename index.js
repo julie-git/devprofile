@@ -8,7 +8,7 @@ const util = require("util");
 const writeFileAsync = util.promisify(fs.writeFile);
 
 let location = "";
-let googleURL ="https://www.google.com/maps/place/" + location;
+let googleURL ="https://www.google.com/maps/place/";
 
 let repoArray=[];
 // let answers = {};
@@ -138,6 +138,8 @@ async function init() {
       answers.following = data.following;
       answers.numrepos = data.public_repos;
       answers.picurl= data.avatar_url;
+      answers.company = data.company;
+      answers.locurl = googleURL + answers.location;
       console.log(answers);
 
       

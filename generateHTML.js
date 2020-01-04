@@ -175,12 +175,39 @@ module.exports = {
           } 
          }
       </style>
-      </head>
-      <body>
-        <div class = "wrapper">
-        <div class="row card"> ${data.name}</div>
+      /head>
 
-      </div>
+      <body>
+          <div class="container"></div>
+          <div class="wrapper">
+              <div class="row">
+                  <div class="col"></div>
+      
+                  <div class="card photo-header">
+                      <div class="row">
+                          <!-- <img src="https://avatars3.githubusercontent.com/u/36972512?v=4"> </img> -->
+                          <img src="${data.picurl}" > </img>
+                      </div>
+                      <h1>Hi! </h1>
+                      <h1>My Name is ${data.name}</h1>
+                      <div class ="row">
+                      <h4>Currently @ company </h4>
+                      </div>
+                  <h6><a href = ${data.locurl}><i class="fas fa-location-arrow"></i>${data.location}</a></h6>
+                        
+                  </div>
+              </div>
+          </div>
+          </div>
+          </div>
+          <div class="row main">
+              <h5>I think of thing to build and do it!</h5>
+      
+          </div>
+      
+      
+          </div>
       </body>
+      
       </html>`
 }};
