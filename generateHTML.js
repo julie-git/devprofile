@@ -175,7 +175,7 @@ module.exports = {
           } 
          }
       </style>
-      /head>
+      <head>
 
       <body>
           <div class="container"></div>
@@ -201,7 +201,7 @@ module.exports = {
           </div>
           </div>
           <div class="row main">
-              <h5>I think of thing to build and do it!</h5>
+              <h5>I think of things to build and do it!</h5>
       
           </div>
       

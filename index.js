@@ -8,6 +8,7 @@ const util = require("util");
 const writeFileAsync = util.promisify(fs.writeFile);
 const readFileAsync = util.promisify(fs.readFile);
 const convertFactory = require('electron-html-to');
+var pdfcrowd = require("pdfcrowd");
 
 let location = "";
 let googleURL ="https://www.google.com/maps/place/";
@@ -70,22 +71,40 @@ function writeToFile(fileName, data) {
   
 }
 
-async function convertToPDF(htmlString){
-  var conversion = convertFactory({
-    converterPath: convertFactory.converters.PDF
-  });
+// async function convertToPDF(htmlString){
+//   var conversion = convertFactory({
+//     converterPath: convertFactory.converters.PDF
+//   });
    
-  conversion({ html: htmlString }, function(err, result) {
-    if (err) {
-      return console.error(err);
-    }
+//   conversion({ html: htmlString }, function(err, result) {
+//     if (err) {
+//       return console.error(err);
+//     }
    
-    console.log(result.numberOfPages);
-    console.log(result.logs);
-    result.stream.pipe(fs.createWriteStream('converted.pdf'));
-    conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
-  });
- }
+//     console.log(result.numberOfPages);
+//     console.log(result.logs);
+//     result.stream.pipe(fs.createWriteStream('converted.pdf'));
+//     conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
+//   });
+//  }
+
+
+
+ 
+function convertHTMLtoPDF(){
+ // create the API client instance
+ var client = new pdfcrowd.HtmlToPdfClient("juliebear", "65890a6935adfa80e9775690b00301b2");
+ 
+ // run the conversion and write the result to a file
+ client.convertFileToFile(
+     "index.html",
+     "devprofile2.pdf",
+     function(err, fileName) {
+         if (err) return console.error("Pdfcrowd Error: " + err);
+         console.log("Success: the file was created " + fileName);
+     });
+  }
+ 
 
 async function init() {
     console.log("init")
@@ -112,7 +131,8 @@ async function init() {
       answers.company = data.company;
       answers.locurl = googleURL + answers.location;
       console.log(answers);
-
+      // const {data2} = await axios.get('https://api.github.com/users/${username}/starred');
+      // console.log(JSON.stringify(data2));
       
       const htmlString = genhtml.generateHTML(answers);
   
@@ -120,6 +140,7 @@ async function init() {
   
       console.log("Successfully wrote to index.html");
       // convertToPDF(htmlString);
+      convertHTMLtoPDF();
       
     } catch(err) {
       console.log(err);
@@ -131,6 +152,7 @@ async function init() {
     
 
  init();
- convertToPDF();
+//  convertHTMLtoPDF()
+//  convertToPDF();
 
 
