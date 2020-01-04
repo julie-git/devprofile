@@ -28,7 +28,7 @@
         html,
         body,
         .wrapper {
-            height: 100%;
+            height: 70%;
         }
 
         .wrapper {
@@ -42,10 +42,14 @@
             font-family: 'Cabin', sans-serif;
         }
 
-        main {
+        .main {
             background-color: #E9EDEE;
             height: auto;
-            padding-top: 30px;
+            padding-top: 500px;
+            display: flex;
+            justify-content: center;
+
+            /* margin-top: 500px; */
         }
 
         h1,
@@ -72,10 +76,12 @@
 
         h4 {
             font-size: 1.5em;
+            text-align: center;
         }
 
         h5 {
             font-size: 1.3em;
+
         }
 
         h6 {
@@ -180,29 +186,49 @@
 <body>
     <div class="container"></div>
     <div class="wrapper">
-        <div class="row">
-            <div class="col"></div>
+        <!-- <div class="row"> -->
+            <!-- <div class="col"> -->
 
-            <div class="card photo-header">
-                <div class="row">
-                    <!-- <img src="https://avatars3.githubusercontent.com/u/36972512?v=4"> </img> -->
-                    <img src="${data.picurl}" > </img>
+                <div class="card photo-header">
+                    <!-- <div class="row"> -->
+                        <img src="https://avatars3.githubusercontent.com/u/36972512?v=4"> </img>
+                        <!-- <img src="${data.picurl}" > </img> -->
+                        <!-- </div>
+                    <div class="row"> -->
+                        <h1>Hi! </h1>
+                        <!-- </div>
+                    <div class="row"> -->
+                        <h1>My Name is ${data.name}</h1>
+                        <!-- </div>
+                    <div class="row"> -->
+                        <h4>Currently @ ${data.company} </h4> <br>
+                        <!-- </div>
+                    <div class="row"> -->
+                        <h6><a href=https://www.google.com/maps/place/Seattle> <i class="fas fa-location-arrow"></i>Seattle</a></h6>
+                        <h6><i class="fab fa-github-alt"></i></h6>
+                    <!-- </div> -->
                 </div>
-                <h1>Hi! </h1>
-                <h1>My Name is ${data.name}</h1>
-                <div class ="row">
-                <h4>Currently @ company </h4>
-                </div>
-            <h6><a href = ${data.locurl}><i class="fas fa-location-arrow"></i>${data.location}</a></h6>
-                  
+            <!-- </div> -->
+        <!-- </div> -->
+    </div>
+    <!-- </div>
+    </div> -->
+    <div class="main"style = "padding-top: 200px">
+        <div class = "row">
+        <h5>I think of thing to build and do it!</h5>
+        </div>
+        <div class="card-section">
+        <div class = "row">
+            <div class="col-4 card">
+                <h3>Public Repositories</h3>
+                <h4>33</h4>
+            </div>
+            <div class = "col-4 card">
+                <h3>Followers</h3>
+                <h4>20</h4>
             </div>
         </div>
-    </div>
-    </div>
-    </div>
-    <div class="row main">
-        <h5>I think of thing to build and do it!</h5>
-
+      </div>
     </div>
 
 

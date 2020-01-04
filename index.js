@@ -6,6 +6,8 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
 const writeFileAsync = util.promisify(fs.writeFile);
+const readFileAsync = util.promisify(fs.readFile);
+const convertFactory = require('electron-html-to');
 
 let location = "";
 let googleURL ="https://www.google.com/maps/place/";
@@ -32,21 +34,6 @@ function promptUser() {
 }
 
 
-// function getgithub(username){
-//  axios.get('https://api.github.com/users/' + username)
-//   .then(function(response){
-//     console.log(response.data); // ex.: { user: 'Your User'}
-//     console.log(response.status); // ex.: 200
-//   }).then(function({ username }){
-//     const queryUrl= `https://api.github.com/users/${username}/repos?per_page=100`;
-//     axios.get(queryUrl).then(function(res){
-//         console.log(queryUrl);
-//        //  console.log(res);
-//         getRepoInfo(res);
-//     })
-//    })
-  
-// }
 
 async function getgithub(username){
  try{ 
@@ -61,60 +48,44 @@ async function getgithub(username){
     //  console.log(data.url);
     getgit.name = data.name;
     console.log("getgithub getgit.name = " + getgit.name);
-    // getgit.blog= data.blog;
-    // getgit.location= data.location;
-    // getgit.giturl= data.url;
     
-    // getgit.followers = data.followers;
-    // getgit.following = data.following;
-    //  getgit.numrepos = data.public_repos;
     console.log("getgithub  after:" + getgit);
     return getgit;
-    //  console.log(repoArray);
-    // console.log(data.name)
-    // console.log(data.blog);
-    // console.log(data.location);
-    // console.log(data.url);
-
-    // console.log(res); 
+    
  }catch(err){
    console.log(err);
  }
 
-//  try{
-//    const { data } = await axios.get('https://api.github.com/users/' + username);
-//  }catch(err){
-//    console.log(err);
-//  }
    
  }
 
 
 
-// function getRepoInfo(response){
-//     console.log("getinfo");
-//     // console.log(response.data);
-
-//     //get login
-//     console.log(response.data.login);
-
-//     //get repos
-//     for(repo of response.data){
-//         console.log(repo.name);
-//         //save to array
-//         repoArray.push(repo.name);
-//     }
-//     // var gitlogin = response.owner.login;
-//     // console.log(gitlogin);
-
-// }
 
 
 
 
 function writeToFile(fileName, data) {
- 
+  
+  
 }
+
+async function convertToPDF(htmlString){
+  var conversion = convertFactory({
+    converterPath: convertFactory.converters.PDF
+  });
+   
+  conversion({ html: htmlString }, function(err, result) {
+    if (err) {
+      return console.error(err);
+    }
+   
+    console.log(result.numberOfPages);
+    console.log(result.logs);
+    result.stream.pipe(fs.createWriteStream('converted.pdf'));
+    conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
+  });
+ }
 
 async function init() {
     console.log("init")
@@ -143,23 +114,12 @@ async function init() {
       console.log(answers);
 
       
-      // let  gitanswers ={};
-      //  gitanswers  = getgithub(gitname);
-    
-
-      //  console.log("init gitanswer.name=")
-      //  console.log(gitanswers.name);
-      // const answers = Object.assign(userAnswers, gitanswers);
-      
-      // console.log("init after merge name= " );
-      // console.log(answers.name);
-      
-      // answer.push({gitname: "julie-git"});
       const htmlString = genhtml.generateHTML(answers);
   
       await writeFileAsync("index.html", htmlString,"utf-8");
   
       console.log("Successfully wrote to index.html");
+      // convertToPDF(htmlString);
       
     } catch(err) {
       console.log(err);
@@ -171,4 +131,6 @@ async function init() {
     
 
  init();
+ convertToPDF();
+
 

@@ -64,7 +64,7 @@ module.exports = {
          -webkit-print-color-adjust: exact !important;
          font-family: 'Cabin', sans-serif;
          }
-         main {
+         .main {
          background-color: #E9EDEE;
          height: auto;
          padding-top: 30px;
