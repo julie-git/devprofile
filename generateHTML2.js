@@ -174,13 +174,5 @@ module.exports = {
             zoom: .75; 
           } 
          }
-      </style>
-      </head>
-      <body>
-        <div class = "wrapper">
-        <div class="row card"> ${data.name}</div>
-
-      </div>
-      </body>
-      </html>`
+      </style>`
 }};
