@@ -65,10 +65,13 @@ module.exports = {
          font-family: 'Cabin', sans-serif;
          }
          .main {
-         background-color: #E9EDEE;
-         height: auto;
-         padding-top: 30px;
-         }
+            background-color: #E9EDEE;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            padding-top: 30px;
+
+        }
          h1, h2, h3, h4, h5, h6 {
          font-family: 'BioRhyme', serif;
          margin: 0;
@@ -158,6 +161,7 @@ module.exports = {
            margin: 20px;
          }
          
+                
          .col {
          flex: 1;
          text-align: center;
@@ -168,46 +172,92 @@ module.exports = {
          color: inherit;
          font-weight: bold;
          }
+         
+        .card-section {
+          margin-top: 50px;
+      }
 
-         @media print { 
+      .card-section .card {
+          width: 400px;
+          text-align: center;
+      }
+
+      .tagline {
+          text-align: center;
+          display: inline-block;
+      }
+      .wrapper-2 {
+        background-color: #879CDF;
+        padding-top: 100px;
+      }
+       @media print { 
           body { 
             zoom: .75; 
           } 
          }
       </style>
-      <head>
+      </head>
 
-      <body>
-          <div class="container"></div>
-          <div class="wrapper">
-              <div class="row">
-                  <div class="col"></div>
-      
-                  <div class="card photo-header">
-                      <div class="row">
-                          <!-- <img src="https://avatars3.githubusercontent.com/u/36972512?v=4"> </img> -->
-                          <img src="${data.picurl}" > </img>
-                      </div>
-                      <h1>Hi! </h1>
-                      <h1>My Name is ${data.name}</h1>
-                      <div class ="row">
-                      <h4>Currently @ company </h4>
-                      </div>
-                  <h6><a href = ${data.locurl}><i class="fas fa-location-arrow"></i>${data.location}</a></h6>
-                        
-                  </div>
-              </div>
-          </div>
-          </div>
-          </div>
-          <div class="row main">
-              <h5>I think of things to build and do it!</h5>
-      
-          </div>
-      
-      
-          </div>
-      </body>
-      
-      </html>`
+<body>
+    <div class="container">
+        <div class="wrapper">
+
+            <div class="card photo-header">
+                <!-- <div class="row"> -->
+                <img src="${data.picurl}" > </img>
+                <!-- </div>
+                    <div class="row"> -->
+                <h1>Hi! </h1>
+                <!-- </div>
+                    <div class="row"> -->
+                <h1>My Name is ${data.name}</h1>
+                <!-- </div>
+                    <div class="row"> -->
+                <h4>Currently @ ${data.company} </h4> <br>
+                <!-- </div>
+                    <div class="row"> -->
+                <h6><a href=${data.locurl}> <i
+                        class="fas fa-location-arrow"></i>${data.location}</a>
+                    <a href=${data.giturl}> <i class="fab fa-github-alt"></i>GitHub</a></h6>
+
+            </div>
+
+        </div>
+
+        <div class="main" style="padding-top: 200px">
+            <div class="row">
+                <div class="col-12 tagline">
+                    <h4>I think of things to build and do it!</h4>
+                </div>
+            </div>
+            <div class="card-section">
+                <div class="row">
+                    <div class= "card">
+                        <h3>Public Repositories</h3>
+                        <h4>${data.numrepos}</h4>
+                    </div>
+                    <div class="card">
+                        <h3>Followers</h3>
+                        <h4>${data.followers}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card">
+                        <h3>Git Hub Stars</h3>
+                        <h4>${data.stars}</h4>
+                    </div>
+                    <div class="card">
+                        <h3>Following</h3>
+                        <h4>${data.following}</h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="wrapper-2"></div>
+    </div>
+</body>
+
+</html>`
 }};

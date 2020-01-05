@@ -122,7 +122,7 @@ async function init() {
       answers.name = data.name;
       answers.blog= data.blog;
       answers.location= data.location;
-      answers.giturl= data.url;
+      answers.giturl= data.html_url;
       
       answers.followers = data.followers;
       answers.following = data.following;
