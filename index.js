@@ -119,7 +119,7 @@ async function init() {
   console.log("init")
   
   try {
-    obj1={}
+    // obj1={}
     // let apinnswers = await promptUser();
     let answers =  await promptUser();
     console.log("1------")

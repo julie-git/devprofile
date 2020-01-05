@@ -27,10 +27,10 @@ const colors = {
 
 module.exports = {
   generateHTML: function (data) {
-// function generateHTML(data) {
-   console.log("generatehtml");
-  // console.log(data.color);
-  return `<!DOCTYPE html>
+    // function generateHTML(data) {
+    console.log("generatehtml");
+    // console.log(data.color);
+    return `<!DOCTYPE html>
 <html lang="en">
    <head>
       <meta charset="UTF-8" />
@@ -38,7 +38,7 @@ module.exports = {
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
       <link href="https://fonts.googleapis.com/css?family=BioRhyme|Cabin&display=swap" rel="stylesheet">
-      <title>Document</title>
+      <title>Developer Profile - ${data.name}</title>
       <style>
           @page {
             margin: 0;
@@ -218,6 +218,7 @@ module.exports = {
                     <h4>I think of things to build and do it!</h4>
                 </div>
             </div>
+            <div class="row">
             <div class="card-section">
                 <div class="row">
                     <div class= "card">
@@ -229,7 +230,7 @@ module.exports = {
                         <h4>${data.followers}</h4>
                     </div>
                 </div>
-                <div class="row">
+                  <div class="row">
                     <div class="card">
                         <h3>Git Hub Stars</h3>
                         <h4>${data.stars}</h4>
@@ -248,4 +249,5 @@ module.exports = {
 </body>
 
 </html>`
-}};
+  }
+};
