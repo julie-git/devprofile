@@ -203,19 +203,10 @@ module.exports = {
         <div class="wrapper">
 
             <div class="card photo-header">
-                <!-- <div class="row"> -->
                 <img src="${data.picurl}" > </img>
-                <!-- </div>
-                    <div class="row"> -->
                 <h1>Hi! </h1>
-                <!-- </div>
-                    <div class="row"> -->
                 <h1>My Name is ${data.name}</h1>
-                <!-- </div>
-                    <div class="row"> -->
                 <h4>Currently @ ${data.company} </h4> <br>
-                <!-- </div>
-                    <div class="row"> -->
                 <h6><a href=${data.locurl}> <i
                         class="fas fa-location-arrow"></i>${data.location}</a>
                     <a href=${data.giturl}> <i class="fab fa-github-alt"></i>GitHub</a></h6>
