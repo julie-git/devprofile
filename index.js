@@ -91,6 +91,18 @@ async function convertHTMLtoPDF() {
   // create the API client instance
   var client = new pdfcrowd.HtmlToPdfClient("juliebear", "65890a6935adfa80e9775690b00301b2");
 
+  // configure the conversion
+try {
+  client.setPageSize("Letter");
+  client.setOrientation("portrait");
+  client.setNoMargins(true);
+} catch(why) {
+  console.error("Pdfcrowd Error: " + why);
+  console.error("Pdfcrowd Error Code: " + why.getCode());
+  console.error("Pdfcrowd Error Message: " + why.getMessage());
+  process.exit(1);
+}
+
   // run the conversion and write the result to a file
   client.convertFileToFile(
     "index.html",
@@ -105,9 +117,12 @@ async function convertHTMLtoPDF() {
 
 async function init() {
   console.log("init")
+  
   try {
-    // let answers = await promptUser();
-    let answers = await promptUser();
+    obj1={}
+    // let apinnswers = await promptUser();
+    let answers =  await promptUser();
+    console.log("1------")
     console.log(answers);
 
 
@@ -115,6 +130,9 @@ async function init() {
     var username = answers.github;
     console.log(username);
     const { data } = await axios.get('https://api.github.com/users/' + username);
+    console.log("2------")
+
+
 
     // get the # github stars by using github scraper
       var url = '/'+username // a random username
@@ -122,10 +140,27 @@ async function init() {
        console.log(data2.stars); // or what ever you want to do with the data
        answers.stars = data2.stars;
        console.log(answers.stars);
-     })
+       stars=answers.stars;
+      //  buildObject(stars);;
+       console.log("3-------")
+      //  buildObject("PLEASE WORK")
+    //    answers.name = data.name;
+    // answers.blog = data.blog;
+    // answers.location =data.location;
+    // answers.giturl = data.html_url;
 
-    // console.log(data);
-    
+    // answers.followers = data.followers;
+    // answers.following = data.following;
+    // answers.numrepos = data.public_repos;
+    // answers.picurl = data.avatar_url;
+    // answers.company = data.company;
+    // answers.locurl = googleURL + answers.location;
+
+
+     })
+// console.log("Below is obj1")
+//      console.log(obj1);
+   
     answers.name = data.name;
     answers.blog = data.blog;
     answers.location =data.location;
@@ -152,11 +187,20 @@ async function init() {
   //     locurl:  googleURL + answers2.location
   // });
 
+// answers1={}
 
+//   function buildObject(stars){
+//     answers1.stars=stars;
+    
 
+//    }
+//    console.log("builtOBJECT BELOW")
+// console.log(answers1)
     // const {data2} = await axios.get('https://api.github.com/users/${username}/starred');
     // console.log(JSON.stringify(data2));
-
+    console.log("BELLOWI IS THE ANSWERS OBJECT")
+     console.log(answers);
+    
     const htmlString = genhtml.generateHTML(answers);
 
     writeFileAsync("index.html", htmlString, "utf-8");

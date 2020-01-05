@@ -173,12 +173,8 @@ module.exports = {
          font-weight: bold;
          }
          
-        .card-section {
-          margin-top: 50px;
-      }
-
       .card-section .card {
-          width: 400px;
+          width: 365px;
           text-align: center;
       }
 
@@ -207,15 +203,16 @@ module.exports = {
                 <h1>Hi! </h1>
                 <h1>My Name is ${data.name}</h1>
                 <h4>Currently @ ${data.company} </h4> <br>
+                <div class = "links-nav">
                 <h6><a href=${data.locurl}> <i
                         class="fas fa-location-arrow"></i>${data.location}</a>
                     <a href=${data.giturl}> <i class="fab fa-github-alt"></i>GitHub</a></h6>
-
+                </div>
             </div>
 
         </div>
 
-        <div class="main" style="padding-top: 200px">
+        <div class="main">
             <div class="row">
                 <div class="col-12 tagline">
                     <h4>I think of things to build and do it!</h4>
@@ -227,7 +224,7 @@ module.exports = {
                         <h3>Public Repositories</h3>
                         <h4>${data.numrepos}</h4>
                     </div>
-                    <div class="card">
+                    <div class="card"style="float:right" >
                         <h3>Followers</h3>
                         <h4>${data.followers}</h4>
                     </div>
@@ -237,7 +234,7 @@ module.exports = {
                         <h3>Git Hub Stars</h3>
                         <h4>${data.stars}</h4>
                     </div>
-                    <div class="card">
+                    <div class="card" style="float:right">
                         <h3>Following</h3>
                         <h4>${data.following}</h4>
                     </div>
