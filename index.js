@@ -1,5 +1,6 @@
 var genhtml = require('./generateHTML');
 var gs = require('github-scraper');
+// const util = require('util');
 var pdfcrowd = require("pdfcrowd");
 
 
@@ -119,8 +120,7 @@ async function init() {
   console.log("init")
   
   try {
-    // obj1={}
-    // let apinnswers = await promptUser();
+    
     let answers =  await promptUser();
     console.log("1------")
     console.log(answers);
@@ -136,31 +136,19 @@ async function init() {
 
     // get the # github stars by using github scraper
       var url = '/'+username // a random username
-      await gs(url, function(err, data2) {
-       console.log(data2.stars); // or what ever you want to do with the data
-       answers.stars = data2.stars;
+      const gsPromise = util.promisify(gs);
+     const starData = await gsPromise(url)
+
+     console.log(starData.stars); // or what ever you want to do with the data
+       answers.stars = starData.stars;
        console.log(answers.stars);
        stars=answers.stars;
       //  buildObject(stars);;
        console.log("3-------")
-      //  buildObject("PLEASE WORK")
-    //    answers.name = data.name;
-    // answers.blog = data.blog;
-    // answers.location =data.location;
-    // answers.giturl = data.html_url;
-
-    // answers.followers = data.followers;
-    // answers.following = data.following;
-    // answers.numrepos = data.public_repos;
-    // answers.picurl = data.avatar_url;
-    // answers.company = data.company;
-    // answers.locurl = googleURL + answers.location;
+    
 
 
-     })
-// console.log("Below is obj1")
-//      console.log(obj1);
-   
+
     answers.name = data.name;
     answers.blog = data.blog;
     answers.location =data.location;
@@ -172,43 +160,21 @@ async function init() {
     answers.picurl = data.avatar_url;
     answers.company = data.company;
     answers.locurl = googleURL + answers.location;
-
+    // answers.stars = data.starred_url;
 
     console.log(answers);
-  //   answers.push({
-  //     name: data.name,
-  //     blog: data.blog,
-  //     location: data.location,
-  //     giturl: data.html_url,
-  //     followers: data.followers,
-  //     following: data.public_repos,
-  //     picurl: data.avatar_url,
-  //     company: data.company,
-  //     locurl:  googleURL + answers2.location
-  // });
+ 
 
-// answers1={}
 
-//   function buildObject(stars){
-//     answers1.stars=stars;
-    
-
-//    }
-//    console.log("builtOBJECT BELOW")
-// console.log(answers1)
-    // const {data2} = await axios.get('https://api.github.com/users/${username}/starred');
-    // console.log(JSON.stringify(data2));
-    console.log("BELLOWI IS THE ANSWERS OBJECT")
-     console.log(answers);
     
     const htmlString = genhtml.generateHTML(answers);
 
     writeFileAsync("index.html", htmlString, "utf-8");
 
     console.log("Successfully wrote to index.html");
-    setTimeout(convertHTMLtoPDF, 3000)
+    // setTimeout(convertHTMLtoPDF, 3000)
     // convertHTMLtoPDF();
-    // nodeHTMLtoPDF()
+   
 
   } catch (err) {
     console.log(err);

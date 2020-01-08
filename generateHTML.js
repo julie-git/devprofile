@@ -213,12 +213,7 @@ module.exports = {
         </div>
 
         <div class="main">
-            <div class="row">
-                <div class="col-12 tagline">
-                    <h4>I think of things to build and do it!</h4>
-                </div>
-            </div>
-            <div class="row">
+           <div class="row">
             <div class="card-section">
                 <div class="row">
                     <div class= "card">
@@ -243,7 +238,7 @@ module.exports = {
             </div>
 
         </div>
-
+      
         <div class="wrapper-2"></div>
     </div>
 </body>
